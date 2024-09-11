@@ -42,7 +42,8 @@ public class ProductSorServiceImpl implements ProductSorService {
             productRepository.save(product);
             productSorRepository.save(productSor);
             return null;
-        } else {
+        } 
+        else {
             return "Quantité insuffisante pour la référence " + productSor.getRef();
         }
     }
@@ -64,10 +65,5 @@ public class ProductSorServiceImpl implements ProductSorService {
     public Map<String, List<ProductSor>> getPiecesGroupedByMachine() {
         List<ProductSor> allProducts = productSorRepository.findAll();
         return allProducts.stream().collect(Collectors.groupingBy(product -> product.getNameMach() +"    "+ product.getRefMach() ));
-    }
- 
-    
-
-
-    
+    }   
 }
