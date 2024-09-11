@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machines</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #938c75;
+            font-family: 'Times New Roman', serif;
+            font-size: 35px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: #4c881a;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 35px;
+            
+        }
+        h3 {
+            color: #000000;
+            font-size: 20px;
+            margin-top: 10px;
+            
+        }
+
+
+        .table-light {
+            background-color: #8bc33d;
+            color: #fff;
+        }
+
+        .table thead th {
+            color: #fff;
+            background-color: #938c75;
+          
+        }
+
+        .table tbody td {
+            color: #333;
+            background-color: #f2f2f2;
+        }
+
+        .table-bordered {
+            border: 2px solid #8bc33d;
+        }
+
+        .text-center {
+            font-weight: 600;
+        }
+
+        .back-to-top {
+            color: #8bc33d;
+            cursor: pointer;
+            font-size: 30px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .back-to-top:hover {
+            color: #6ea72a;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #e9e9e9;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border-color: #8bc33d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-to-top" title="Retour à l'accueil">
+            <i class="bi bi-arrow-left-short"></i>
+        </a>
+        <h1 class="text-center my-4">Liste des Pièces par Machine</h1>
+
+        <div th:each="entry : ${pieces}">
+            <h2>Nom de la machine et sa référence :</h2>
+            <h3 th:text="${entry.key}"></h3>
+            <table class="table table-striped table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-center">Nom de la pièce</th>
+                        <th class="text-center">Référence de la pièce</th>
+                        <th class="text-center">Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="productSor : ${entry.value}">
+                        <td class="text-center" th:text="${productSor.name}"></td>
+                        <td class="text-center" th:text="${productSor.ref}"></td>
+                        <td class="text-center">
+                            <span th:each="product : ${products}"
+                                  th:if="${product.name} == ${productSor.name} and ${product.ref} == ${productSor.ref}"
+                                  th:text="${product.prixunitaire}">
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+               
+            </table>
+        </div>
+    </div>
+</body>
+</html>

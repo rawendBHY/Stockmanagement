@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CHOMARAT</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <div class="grid-container">
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">CHOMARAT</div>
+        </div>
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="/productlist">
+              <i class="bi bi-box-seam"></i> Liste des pièces en stock
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/productSor">
+              <i class="bi bi-list-ul"></i> Liste des pièces sorties
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/machtable">
+              <i class="bi bi-archive"></i> Liste des machines
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/logout">
+              <i class="bi bi-box-arrow-right"></i> Se déconnecter
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <main class="main-container">
+        <div class="main-title">
+          <h1>CHOMARAT</h1>
+          <p class="font-weight-bold">DASHBOARD</p>
+        </div>
+        <div class="main-cards">
+          <div class="card">
+            <div class="card-inner">
+              <p class="text">PIECES EN STOCK</p>
+              <i class="bi bi-box-seam text-orange"></i> 
+            </div>
+            <span class="text font-weight-bold" th:text="${totalQuantity}">0</span>
+          </div>
+        
+          <div class="card">
+            <div class="card-inner">
+              <p class="text">PIECES SORTIES</p>
+              <i class="bi bi-cart-check text-green"></i>
+            </div>
+            <span class="text font-weight-bold" th:text="${totalProductSor}">0</span>
+          </div>
+        </div>
+  
+      </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>
