@@ -11,12 +11,21 @@
 </head>
 <body>
     <div class="container">
+        <header class="header">
+            <div class="header-left">
+                    <img src="http://localhost:8091/images/logo.png" alt="Logo" class="log">
+                    <div>CHOMARAT</div>
+            </div>
+            <div class="header-right">
+                <i class="bi bi-person-circle" id="icon" style="cursor: pointer;"></i>
+            </div>
+            <a href="/logout" class="logout-button" id="logout-button">Se déconnecter</a>
+        </header>
         <aside class="sidebar">
-            <div class="sidebar-title">CHOMARAT</div>
             <ul>
                 <li>
                     <a href="/">
-                        <i class="bi bi-house-door text-red"></i> Dashbord
+                        <i class="bi bi-house-door text-yellow"></i> Dashboard
                     </a>
                 </li>
                 <li>
@@ -26,19 +35,15 @@
                 </li>
                 <li>
                     <a href="/productSor">
-                        <i class="bi bi-list-ul text-green"></i> Liste des pièces sorties
+                        <i class="bi bi-list-ul text-red"></i> Liste des pièces sorties
                     </a>
                 </li>
                 <li>
                     <a href="/machtable">
-                        <i class="bi bi-archive text-blue"></i> Liste des machines
+                        <i class="bi bi-archive text-green"></i> Liste des pièces par machine
                     </a>
                 </li>
-                <li>
-                    <a href="/logout">
-                        <i class="bi bi-box-arrow-right text-yellow"></i> Se déconnecter
-                    </a>
-                </li>
+            
             </ul>
         </aside>
     <div class="main-container">
@@ -56,6 +61,7 @@
                     <th>Référence de la pièce</th>
                     <th>Nom de la Machine</th>
                     <th>Référence de la Machine</th>
+                    <th>Mecanicien </th>
                     <th>Date de sortie</th>
                     <th>
                         <a href="/productsor/new" class="btn">Ajouter une pièce</a>
@@ -69,6 +75,7 @@
                     <td th:text="${productSor.ref}"></td>
                     <td th:text="${productSor.nameMach}"></td>
                     <td th:text="${productSor.refMach}"></td>
+                    <td th:text="${productSor.Mecan}"></td>
                     <td th:text="${productSor.date}"></td>
                     <td>
                         <a th:href="@{/productsor/edit/{id}(id=${productSor.id})}" class="icon">

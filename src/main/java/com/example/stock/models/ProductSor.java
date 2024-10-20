@@ -27,6 +27,8 @@ public class ProductSor {
     private String nameMach;
     @NotBlank(message = "La référence de la machine est obligatoire")
     private String refMach; 
+    @NotBlank(message = "Le nom de mécanicien est obligatoire")
+    private String Mecan; 
     @NotNull(message = "La date est obligatoire")
     private LocalDate date;
 

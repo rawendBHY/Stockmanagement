@@ -1,70 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - CHOMARAT</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <aside class="sidebar">
-        <div class="sidebar-title">CHOMARAT</div>
-        <ul>
-          <li>
-            <a href="/">
-              <i class="bi bi-house-door text-red"></i> Dashbord
-            </a>
-          </li>
-          <li>
-            <a href="/productlist">
-              <i class="bi bi-box-seam text-orange"></i> Liste des pièces en stock
-            </a>
-          </li>
-          <li>
-            <a href="/productSor">
-              <i class="bi bi-list-ul  text-green "></i> Liste des pièces sorties
-            </a>
-          </li>
-          <li>
-            <a href="/machtable">
-              <i class="bi bi-archive  text-blue"></i> Liste des machines
-            </a>
-          </li>
-          <li>
-            <a href="/logout">
-              <i class="bi bi-box-arrow-right text-yellow"></i> Se déconnecter
-            </a>
-          </li>
-        </ul>
-      </aside>
-      <main class="main-container">
-        <div class="main-title">
-          <h1>CHOMARAT</h1>
-          <p class="font-weight-bold">DASHBOARD</p>
-        </div>
-        <div class="main-cards">
-          <div class="card">
-            <div class="card-inner">
-              <p class="text">PIECES EN STOCK</p>
-              <i class="bi bi-box-seam text-orange"></i> 
+        <header class="header">
+            <div class="header-left">
+                    <img src="http://localhost:8091/images/logo.png" alt="Logo" class="log">
+                    <div>CHOMARAT</div>
             </div>
-            <span class="text font-weight-bold" th:text="${totalQuantity}">0</span>
-          </div>
-        
-          <div class="card">
-            <div class="card-inner">
-              <p class="text">PIECES SORTIES</p>
-              <i class="bi bi-cart-check text-green"></i>
+            <div class="header-right">
+                <i class="bi bi-person-circle" id="icon" style="cursor: pointer;"></i>
             </div>
-            <span class="text font-weight-bold" th:text="${totalProductSor}">0</span>
-          </div>
-        </div>
-  
-      </main>
+            
+            <a href="/logout" class="logout-button" id="logout-button">Se déconnecter</a>
+        </header>
+        <aside class="sidebar">
+            <ul>
+                <li>
+                    <a href="/">
+                        <i class="bi bi-house-door text-yellow"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/productlist">
+                        <i class="bi bi-box-seam text-orange"></i> Liste des pièces en stock
+                    </a>
+                </li>
+                <li>
+                    <a href="/productSor">
+                        <i class="bi bi-list-ul text-red"></i> Liste des pièces sorties
+                    </a>
+                </li>
+                <li>
+                    <a href="/machtable">
+                        <i class="bi bi-archive text-green"></i> Liste des pièces par machine
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="main-container">
+            <div class="main-title">
+                <h3>DASHBOARD</h3>   
+            </div>
+            <div class="main-cards">
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text">PIÈCES EN STOCK</p>
+                        <i class="bi bi-box-seam text-orange"></i> 
+                    </div>
+                    <span th:text="${totalQuantity}">0</span>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text">PIÈCES SORTIES</p>
+                        <i class="bi bi-box-arrow-right text-red"></i>
+                    </div>
+                    <span th:text="${totalProductSor}">0</span>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text">PIÈCE LA PLUS CONSOMMÉE</p>
+                        <i class="bi bi-cart-check text-green"></i>
+                    </div>
+                    <span th:text="${mostConsumedPiece != null ? mostConsumedPiece.name : 'Aucune pièce consommée'}"></span>
+                </div>
+            </div>
+        </main>
     </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
     <script src="/js/scripts.js"></script>
-  </body>
+</body>
 </html>

@@ -7,54 +7,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/machlistStyle.css">
 </head>
-<body>
-    <aside class="sidebar">
-        <div class="sidebar-title">CHOMARAT</div>
-        <ul>
-            <li>
-                <a href="/">
-                    <i class="bi bi-house-door text-red"></i> Dashbord
-                </a>
-            </li>
-            <li>
-                <a href="/productlist">
-                    <i class="bi bi-box-seam text-orange"></i> Liste des pièces en stock
-                </a>
-            </li>
-            <li>
-                <a href="/productSor">
-                    <i class="bi bi-list-ul text-green"></i> Liste des pièces sorties
-                </a>
-            </li>
-            <li>
-                <a href="/machtable">
-                    <i class="bi bi-archive text-blue"></i> Liste des machines
-                </a>
-            </li>
-            <li>
-                <a href="/logout">
-                    <i class="bi bi-box-arrow-right text-yellow"></i> Se déconnecter
-                </a>
-            </li>
-        </ul>
-    </aside>
-
-    <div class="main-container">
-            <h1>Liste des Pièces par Machine</h1>
-
-            <div th:each="p: ${pieces}">
-                <h2>Nom de la machine et sa référence :</h2>
-                <h3 th:text="${p.key}"></h3>
+<body> 
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                    <img src="http://localhost:8091/images/logo.png" alt="Logo" class="log">
+                    <div>CHOMARAT</div>
+            </div>
+            <div class="header-right">
+                <i class="bi bi-person-circle" id="icon" style="cursor: pointer;"></i>
+            </div>
+            <a href="/logout" class="logout-button" id="logout-button">Se déconnecter</a>
+        </header>
+        <aside class="sidebar">
+            <ul>
+                <li>
+                    <a href="/">
+                        <i class="bi bi-house-door text-yellow"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/productlist">
+                        <i class="bi bi-box-seam text-orange"></i> Liste des pièces en stock
+                    </a>
+                </li>
+                <li>
+                    <a href="/productSor">
+                        <i class="bi bi-list-ul text-red"></i> Liste des pièces sorties
+                    </a>
+                </li>
+                <li>
+                    <a href="/machtable">
+                        <i class="bi bi-archive text-green"></i> Liste des pièces par machine
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <div class="main-container">
+            <h1>Liste des pièces par machine</h1>
+            <div th:each="entry : ${Machines}">
+                <div style="display: flex; align-items: center; margin-top: 20px;">
+                    <h2>Nom de la machine et sa référence :</h2>
+                    <h3 th:text="${entry.key}" th:attr="data-machine=${entry.key}, data-count=${#lists.size(entry.value)}"></h3>
+                </div>
                 <table class="table">
                     <thead class="table-light">
                         <tr>
+                            <th></th>
                             <th class="text-center">Nom de la pièce</th>
                             <th class="text-center">Référence de la pièce</th>
                             <th class="text-center">Prix</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="productSor : ${p.value}">
+                        <tr th:each="productSor ,status : ${entry.value}">
+                            <td th:text="${status.count}"></td>
                             <td class="text-center" th:text="${productSor.name}"></td>
                             <td class="text-center" th:text="${productSor.ref}"></td>
                             <td class="text-center">
@@ -67,8 +74,8 @@
                     </tbody>
                 </table>
             </div>
-        </div>
     </div>
+</div>
     <script src="/js/scripts.js"></script>
 </body>
 </html>

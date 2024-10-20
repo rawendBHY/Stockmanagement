@@ -1,8 +1,8 @@
 package com.example.stock.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -88,14 +88,14 @@ public class ProductSorController {
         return "productSor";
     }
 
-    @GetMapping("/machtable")
-    public String showMachines(Model model) {
-        List<Product> products = productService.getAllProducts();
-        Map<String, List<ProductSor>> pieces = productSorService.getPiecesGroupedByMachine();
-        model.addAttribute("pieces", pieces);
-        model.addAttribute("products", products);
-
-        return "machtable";
-    }
-
+@GetMapping("/machtable")
+public String showMachines(Model model) {
+    List<Product> products = productService.getAllProducts();
+    Map<String, List<ProductSor>> pieces = productSorService.getPieces();
+    List<Map.Entry<String, List<ProductSor>>> Machines = new ArrayList<>(pieces.entrySet());
+    Machines.sort((entry1, entry2) -> Integer.compare(entry2.getValue().size(), entry1.getValue().size()));
+    model.addAttribute("Machines", Machines);
+    model.addAttribute("products", products);
+    return "machtable"; 
+}
 }

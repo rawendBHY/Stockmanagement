@@ -15,4 +15,7 @@ public interface ProductSorRepository extends JpaRepository<ProductSor, Long> {
     @Query("SELECT pr FROM ProductSor pr WHERE pr.name LIKE %:word% OR pr.ref LIKE %:word%")
     List<ProductSor> searchProduct(@Param("word") String word);
 
+    @Query("SELECT ps FROM ProductSor ps GROUP BY ps.name ORDER BY COUNT(ps) DESC")
+    ProductSor findMostConsumedPiece();
+
 }

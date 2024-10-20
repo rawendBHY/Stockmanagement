@@ -4,54 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modification d'une pièce</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            padding: 10px;
-        }
-        h1 {
-            color: #8bc33d;
-            text-align: center;
-            font-family: serif;
-        }
-        form {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 15px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #8bc33d;
-            border: none;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-           
-        }
-        .btn-danger {
-            background-color: #b81616;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/editproductStyle.css">
 </head>
 <body>
     <h1>Modifier</h1>
@@ -63,6 +16,10 @@
         <div class="form-group">
             <label for="ref">Référence :</label>
             <input type="text" id="ref" th:field="*{ref}" />
+        </div>
+        <div class="form-group">
+            <label for="fourniss">Fournisseur :</label>
+            <input type="text" id="fourniss" th:field="*{fourniss}" />
         </div>
         <div class="form-group">
             <label for="Prixunitaire">Prix Unitaire :</label>

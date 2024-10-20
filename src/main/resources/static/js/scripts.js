@@ -21,3 +21,10 @@ window.addEventListener('DOMContentLoaded', () => {
     list[activeIndex].classList.add("hovered");
   }
 });
+
+const profileIcon = document.getElementById('icon');
+const logoutButton = document.getElementById('logout-button');
+
+profileIcon.addEventListener('click', () => {
+    logoutButton.classList.toggle('show'); 
+});

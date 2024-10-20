@@ -8,7 +8,6 @@ import com.example.stock.models.ProductSor;
 import com.example.stock.repositories.ProductRepository;
 import com.example.stock.repositories.ProductSorRepository;
 
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -42,8 +41,7 @@ public class ProductSorServiceImpl implements ProductSorService {
             productRepository.save(product);
             productSorRepository.save(productSor);
             return null;
-        } 
-        else {
+        } else {
             return "Quantité insuffisante pour la référence " + productSor.getRef();
         }
     }
@@ -53,7 +51,7 @@ public class ProductSorServiceImpl implements ProductSorService {
         return productSorRepository.count();
     }
 
-     @Override
+    @Override
     public List<ProductSor> searchProduct(String word) {
         List<ProductSor> productS = productSorRepository.searchProduct(word);
         if (productS.isEmpty()) {
@@ -61,9 +59,21 @@ public class ProductSorServiceImpl implements ProductSorService {
         }
         return productS;
     }
+
     @Override
-    public Map<String, List<ProductSor>> getPiecesGroupedByMachine() {
+    public Map<String, List<ProductSor>> getPieces() {
         List<ProductSor> allProducts = productSorRepository.findAll();
-        return allProducts.stream().collect(Collectors.groupingBy(product -> product.getNameMach() +"    "+ product.getRefMach() ));
-    }   
+        return allProducts.stream().collect(Collectors.groupingBy(product -> product.getNameMach() + " " + product.getRefMach()));
+    }
+
+    @Override
+    public Optional<ProductSor> findMostConsumedPiece() {
+        List<ProductSor> allProducts = productSorRepository.findAll();
+        if (allProducts.isEmpty()) {
+            return Optional.empty();
+        }
+        Map<ProductSor, Long> pieceCounts = allProducts.stream().collect(Collectors.groupingBy(product -> product, Collectors.counting()));
+        return pieceCounts.entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey);
+    }
 }
+

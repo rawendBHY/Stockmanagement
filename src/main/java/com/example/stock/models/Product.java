@@ -9,7 +9,6 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "product", uniqueConstraints = {@UniqueConstraint(columnNames = "ref")})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +18,10 @@ public class Product {
     private String name;
 
     @NotBlank(message = "La référence est obligatoire")
-    @Column(unique = true)
     private String ref;
+
+    @NotBlank(message="le nom du fournisseur est obligatoire")
+    private String fourniss;
 
     @NotNull(message = "Le prix est obligatoire")
     @Positive(message = "Le prix doit être positif")
