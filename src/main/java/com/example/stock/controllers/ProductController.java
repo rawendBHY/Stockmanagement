@@ -36,7 +36,10 @@ public class ProductController {
         if (bindingResult.hasErrors()) {
             return "newProduct";
         }
-
+        if (productService.existsByRef(product.getRef())) {
+            bindingResult.addError(new ObjectError("product", "La référence du produit existe déjà"));
+            return "newProduct";
+        }
         productService.saveProduct(product);
         return "redirect:/productlist";
     }
